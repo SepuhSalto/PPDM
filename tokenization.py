@@ -4,10 +4,8 @@ from nltk.tokenize import word_tokenize
 
 nltk.download('punkt')
 
-df = pd.read_csv('cleaned_file.csv')  
-
-df['tokenized_words'] = df['cleaned_review'].apply(word_tokenize)
-
-print(df[['cleaned_review', 'tokenized_words']].head())
-
-df.to_csv('tokenized_file.csv', index=False)
+def tokenize_data(input_file, output_file):
+    df = pd.read_csv(input_file)  
+    df['tokenized_words'] = df['cleaned_review'].apply(word_tokenize)
+    df.to_csv(output_file, index=False)
+    print(f"Tokenization done and saved to {output_file}")
